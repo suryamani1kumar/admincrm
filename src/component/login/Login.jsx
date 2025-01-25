@@ -29,11 +29,19 @@ const Login = () => {
     if (!loginDetails.userormail && !loginDetails.password) {
       setErrorMessage({ password: 'error', userormail: 'error' });
       return;
-    } else if (!loginDetails.password) {
-      setErrorMessage({ password: 'error' });
-      return;
     } else if (!loginDetails.userormail) {
-      setErrorMessage({ userormail: 'error' });
+      setErrorMessage({
+        userormail: 'Please fill out email or username fields.',
+      });
+      return;
+    } else if (loginDetails.userormail !== 'triploom_1234') {
+      setErrorMessage({ userormail: 'Please check email or username.' });
+      return;
+    } else if (!loginDetails.password) {
+      setErrorMessage({ password: 'Please fill out password fields.' });
+      return;
+    } else if (loginDetails.password !== 'triploom_1234') {
+      setErrorMessage({ password: 'Please check password fields.' });
       return;
     }
     if (

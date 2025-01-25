@@ -7,7 +7,7 @@ import { FaRegUser } from 'react-icons/fa';
 import { IoChevronDownSharp } from 'react-icons/io5';
 
 const SiderNav = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const [activeSubMenu, setActiveSubMenu] = useState(null);
 
   const toggleSidebar = () => {
