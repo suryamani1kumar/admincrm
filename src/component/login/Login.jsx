@@ -2,19 +2,48 @@ import { HiOutlineUserCircle } from 'react-icons/hi';
 import { FaLock, FaUser } from 'react-icons/fa';
 import { BiSolidHide, BiSolidShow } from 'react-icons/bi';
 import { useState } from 'react';
+import { MdError } from 'react-icons/md';
+import { useNavigate } from 'react-router';
+
 const Login = () => {
+  let navigate = useNavigate();
+
   const [passwordHideShow, setPasswordHideShow] = useState(true);
   const [loginDetails, setLoginDetails] = useState({
     password: '',
     userormail: '',
   });
+  const [errorMessage, setErrorMessage] = useState({});
+
   const handleloginDetails = (e) => {
     const { value, name } = e.target;
     setLoginDetails({
       ...loginDetails,
       [name]: value,
     });
+    setErrorMessage({});
   };
+
+  const handlelogin = (e) => {
+    e.preventDefault();
+    if (!loginDetails.userormail && !loginDetails.password) {
+      setErrorMessage({ password: 'error', userormail: 'error' });
+      return;
+    } else if (!loginDetails.password) {
+      setErrorMessage({ password: 'error' });
+      return;
+    } else if (!loginDetails.userormail) {
+      setErrorMessage({ userormail: 'error' });
+      return;
+    }
+    if (
+      loginDetails.userormail == 'triploom_1234' &&
+      loginDetails.password == 'triploom_1234'
+    ) {
+      navigate('/dashboard');
+    }
+  };
+
   return (
     <div className="loginconatiner">
       <div className="login">
@@ -22,7 +51,21 @@ const Login = () => {
           <div className="login_header-form">
             <HiOutlineUserCircle />
           </div>
-          <form className="login-form">
+
+          <form className="login-form" onSubmit={handlelogin}>
+            {errorMessage.password && errorMessage.userormail ? (
+              <div className="error error-style-1">
+                <MdError /> Please fill out all required fields.
+              </div>
+            ) : errorMessage.userormail ? (
+              <div className="error error-style-1">
+                <MdError /> {errorMessage.userormail}
+              </div>
+            ) : errorMessage.password ? (
+              <div className="error error-style-1">
+                <MdError /> {errorMessage.password}
+              </div>
+            ) : null}
             <div className="login_input-group">
               <div className="login_input-group-prepend">
                 <span className="login_input-group-text">
@@ -33,6 +76,7 @@ const Login = () => {
                 type="text"
                 className="login_form-control"
                 placeholder="Enter email or username"
+                autoComplete="off"
                 name="userormail"
                 id="userormail"
                 value={loginDetails.userormail}
@@ -47,10 +91,11 @@ const Login = () => {
               </div>
               <input
                 type={passwordHideShow ? 'password' : 'text'}
-                placeholder="Enter Password"
+                placeholder="Enter password"
                 className="login_form-control"
                 name="password"
                 id="password"
+                autoComplete="off"
                 value={loginDetails.password}
                 onChange={handleloginDetails}
               />
@@ -61,7 +106,7 @@ const Login = () => {
                 {passwordHideShow ? <BiSolidHide /> : <BiSolidShow />}
               </span>
             </div>
-            <button type="button" className="btn btn-secondary btn-block">
+            <button type="submit" className="btn btn-secondary btn-block">
               LOGIN
             </button>
             <div className="message">

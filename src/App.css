@@ -138,3 +138,28 @@
 .message a:hover {
   text-decoration: underline;
 }
+
+.error {
+  max-width: 400px;
+  width: 100%;
+  font-size: 0.9rem;
+  animation: slideIn 0.3s ease-out;
+}
+
+.error svg {
+  color: #ff4757;
+}
+
+.error-style-1 {
+  background: #fff;
+  border-left: 4px solid #ff4757;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .7rem;
+  margin-bottom: .7rem;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  color: #69737c;
+}
