@@ -23,7 +23,10 @@ const Login = () => {
     });
     setErrorMessage({});
   };
-
+  const preventCopyPaste = (e) => {
+    e.preventDefault();
+    return false;
+  };
   const handlelogin = (e) => {
     e.preventDefault();
     if (!loginDetails.userormail && !loginDetails.password) {
@@ -106,6 +109,8 @@ const Login = () => {
                 autoComplete="off"
                 value={loginDetails.password}
                 onChange={handleloginDetails}
+                onPaste={preventCopyPaste}
+                onCopy={preventCopyPaste}
               />
               <span
                 className="passhidshow"
