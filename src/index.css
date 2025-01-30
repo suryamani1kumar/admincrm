@@ -1,216 +1,15 @@
 *,
 ::after,
 ::before {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-body{
-    background: #e4e9f7;
-}
-/* .sidebar {
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 78px;
-  background: #11101d;
-  padding: 6px 14px;
-  z-index: 99;
-  transition: all 0.5s ease;
-}
-.sidebar.open {
-  width: 250px;
-}
-.logo-details {
-  height: 60px;
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-.siderbartoggle {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  font-size: 22px;
-  transition: all 0.4s ease;
-  font-size: 23px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.5s ease;
-}
-.iconcontainersidebar {
-  font-size: 18px;
-  min-width: 50px;
-  text-align: center;
-  color: #fff;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.logo_name {
-  color: #fff;
-  font-size: 20px;
-  font-weight: 600;
-  display: none;
-  transition: all 0.5s ease;
-}
-.sidebar.open .logo_name {
-  display: block;
-}
-.logo {
-  opacity: 0;
-  transition: all 0.5s ease;
+body {
+  background: #e4e9f7;
 }
 
-.sidebar.open .logo-details .logo {
-  opacity: 1;
-}
-
-.sidebar .nav-list {
-  margin-top: 20px;
-  height: 100%;
-}
-.sidebar li {
-  position: relative;
-  margin: 8px 0;
-  list-style: none;
-  height: 45px;
-}
-
-.sidebar li .tooltip {
-  position: absolute;
-  top: -20px;
-  left: calc(100% + 15px);
-  z-index: 3;
-  background: #fff;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 15px;
-  font-weight: 400;
-  opacity: 0;
-  white-space: nowrap;
-  pointer-events: none;
-  transition: 0s;
-}
-.sidebar li:hover .tooltip {
-  opacity: 1;
-  pointer-events: auto;
-  transition: all 0.4s ease;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.sidebar.open li .tooltip {
-  display: none;
-}
-
-.sidebar li a {
-  display: flex;
-  height: 100%;
-  width: 100%;
-  border-radius: 12px;
-  align-items: center;
-  text-decoration: none;
-  transition: all 0.4s ease;
-  background: #11101d;
-}
-.sidebar li a:hover {
-  background: #fff;
-}
-
-.sidebar li a .links_name {
-  color: #fff;
-  font-size: 15px;
-  font-weight: 400;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.4s;
-}
-.sidebar.open li a .links_name {
-  opacity: 1;
-  pointer-events: auto;
-}
-.sidebar li a:hover .links_name,
-.sidebar li a:hover .iconcontainersidebar {
-  transition: all 0.5s ease;
-  color: #11101d;
-}
-
-.sidebar li.profile {
-  position: fixed;
-  height: 60px;
-  width: 78px;
-  left: 0;
-  bottom: -8px;
-  padding: 10px 14px;
-  background: #1d1b31;
-  transition: all 0.5s ease;
-  overflow: hidden;
-}
-.sidebar.open li.profile {
-  width: 250px;
-}
-.sidebar li .profile-details {
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap;
-}
-.sidebar li.profile .name,
-.sidebar li.profile .job {
-  font-size: 15px;
-  font-weight: 400;
-  color: #fff;
-  white-space: nowrap;
-}
-.sidebar li.profile .job {
-  font-size: 12px;
-}
-.sidebar .profile #log_out {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  background: #1d1b31;
-  width: 100%;
-  height: 60px;
-  line-height: 60px;
-  border-radius: 0px;
-  transition: all 0.5s ease;
-}
-.sidebar.open .profile #log_out {
-  width: 50px;
-  background: none;
-}
-
-.nav-list .sub-menu {
-  display: none;
-  margin-left: 20px;
-  padding-left: 20px;
-  padding-top: 5px;
-  border-left: 1px solid #f6f6f6;
-}
-.nav-list .sub-menu li a {
-  padding: 10px 8px;
-  font-size: 12px;
-}
-.sidebar.active .menu .sub-menu {
-  position: absolute;
-  top: 0;
-  left: 20px;
-  width: 200px;
-  border-radius: 20px;
-  padding: 10px 20px;
-  border: 1px solid #f6f6f6;
-  background-color: #fff;
-  box-shadow: 0px 10px 8px rgba(0, 0, 0, 0.1);
-}
-@media (max-width: 420px) {
-  .sidebar li .tooltip {
-    display: none;
-  }
-}
- */
 .sidebar {
   position: relative;
   width: max-content;
@@ -236,11 +35,13 @@ body{
   border-radius: 50%;
   overflow: hidden;
 }
+
 .user-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
 .user-details .title,
 .menu .title {
   font-size: 15px;
@@ -249,23 +50,28 @@ body{
   text-transform: uppercase;
   margin-bottom: 10px;
 }
-.user-details .title{
+
+.user-details .title {
   font-size: 18px;
   font-weight: 600;
 }
+
 .user-details .name {
   font-size: 15px;
   font-weight: 500;
   color: #d9d9d9;
 }
+
 .nav {
   flex: 1;
 }
+
 .menu ul li {
   position: relative;
   list-style: none;
   margin-bottom: 5px;
 }
+
 .menu ul li a {
   display: flex;
   align-items: center;
@@ -278,25 +84,31 @@ body{
   border-radius: 8px;
   transition: all 0.3s;
 }
-.menu ul li > a:hover,
-.menu ul li.active > a {
+
+.menu ul li>a:hover,
+.menu ul li.active>a {
   color: #000;
   background-color: #f6f6f6;
 }
+
 .menu ul li .icon {
   font-size: 20px;
 }
+
 .menu ul li .text {
   flex: 1;
 }
+
 .menu ul li .arrow {
   font-size: 22px;
   transition: all 0.3s;
   display: flex;
 }
+
 .menu ul li.active .arrow {
   transform: rotate(180deg);
 }
+
 .menu .sub-menu {
   display: none;
   margin-left: 20px;
@@ -304,15 +116,18 @@ body{
   padding-top: 5px;
   border-left: 1px solid #f6f6f6;
 }
+
 .menu .sub-menu li a {
   padding: 10px 8px;
   font-size: 12px;
 }
+
 .menu:not(:last-child) {
   padding-bottom: 10px;
   margin-bottom: 20px;
   border-bottom: 2px solid #f6f6f6;
 }
+
 .menu-btn {
   position: absolute;
   right: -12px;
@@ -328,12 +143,15 @@ body{
   color: #4f4f4f;
   background-color: #fff;
 }
+
 .menu-btn:hover svg {
   color: #11101d;
 }
+
 .menu-btn svg {
   transition: all 0.3s;
 }
+
 .sidebar.active {
   width: 92px;
 }
@@ -341,19 +159,23 @@ body{
 .sidebar.active .user-details {
   display: none;
 }
+
 .sidebar.active .menu .title {
   text-align: center;
 }
+
 .sidebar.active .menu ul li .arrow {
   display: none;
 }
-.sidebar.active .menu > ul > li > a {
+
+.sidebar.active .menu>ul>li>a {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.sidebar.active .menu > ul > li > a .text {
+
+.sidebar.active .menu>ul>li>a .text {
   position: absolute;
   left: 70px;
   top: 50%;
@@ -366,7 +188,8 @@ body{
   visibility: hidden;
   transition: all 0.3s;
 }
-.sidebar.active .menu > ul > li > a .text::after {
+
+.sidebar.active .menu>ul>li>a .text::after {
   content: "";
   position: absolute;
   left: -5px;
@@ -378,11 +201,13 @@ body{
   transform: rotate(45deg);
   z-index: -1;
 }
-.sidebar.active .menu > ul > li > a:hover .text {
+
+.sidebar.active .menu>ul>li>a:hover .text {
   left: 50px;
   opacity: 1;
   visibility: visible;
 }
+
 .sidebar.active .menu .sub-menu {
   position: absolute;
   top: 0;
