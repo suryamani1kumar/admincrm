@@ -54,6 +54,20 @@ const TextEditor = () => {
           __html: value,
         }}
       />
+      <input placeholder="meta title" />
+      <input placeholder="meta keyword" />
+      <input placeholder="meta description" />
+      <input placeholder="Heading" />
+      <input placeholder="pageUrl" />
+      <input placeholder="Image" />
+      <select name="category" id="category">
+        <option value="travel">travel</option>
+        <option value="food">food</option>
+      </select>
+      <select name="status" id="status">
+        <option value="Active">Active</option>
+        <option value="inActive">inActive</option>
+      </select>
     </div>
   );
 };
