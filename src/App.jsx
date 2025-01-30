@@ -11,7 +11,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/dashboard" element={<SiderNav />} />
-          <Route path="/editor" element={<TextEditor />}></Route>
+          <Route path="/blog" element={<TextEditor />}></Route>
         </Routes>
       </BrowserRouter>
     </>

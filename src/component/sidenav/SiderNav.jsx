@@ -7,10 +7,11 @@ import {
   MdOutlineArrowForwardIos,
   MdOutlineKeyboardArrowDown,
 } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 const SiderNav = () => {
   const [activeMenu, setActiveMenu] = useState(null);
-  const [isSidebarActive, setIsSidebarActive] = useState(false);
+  const [isSidebarActive, setIsSidebarActive] = useState(true);
 
   const handleMenuClick = (index) => {
     setActiveMenu(activeMenu === index ? null : index);
@@ -19,6 +20,8 @@ const SiderNav = () => {
   const toggleSidebar = () => {
     setIsSidebarActive(!isSidebarActive);
   };
+  console.log('activeMenu', activeMenu);
+
   return (
     <div>
       {/* https://codepen.io/neeraj_1/pen/mdgXdxb */}
@@ -46,14 +49,11 @@ const SiderNav = () => {
           <div className="menu">
             <p className="title">Main</p>
             <ul>
-              <li
-                className={activeMenu === 0 ? 'active' : ''}
-                onClick={() => handleMenuClick(0)}
-              >
-                <a href="#">
+              <li>
+                <Link href="/dashboard">
                   <LuLayoutDashboard />
                   <span className="text">Dashboard</span>
-                </a>
+                </Link>
               </li>
               <li
                 className={activeMenu === 1 ? 'active' : ''}
@@ -81,13 +81,19 @@ const SiderNav = () => {
                   </ul>
                 )}
               </li>
+              <li>
+                <Link href="/blog">
+                  <LuLayoutDashboard />
+                  <span className="text">Blog</span>
+                </Link>
+              </li>
             </ul>
           </div>
 
           <div className="menu">
             <ul>
               <li>
-                <a href="#">
+                <a href="/">
                   <TbLogout />
                   <span className="text">Logout</span>
                 </a>
