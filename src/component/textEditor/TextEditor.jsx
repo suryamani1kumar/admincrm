@@ -40,12 +40,25 @@ const Editormodules = {
 };
 
 const TextEditor = () => {
-  const [value, setValue] = useState('');
+ const [blogForm, setBlogFrom] = useState({
+    content: "",
+    metaTitle: "",
+    metaDescription: "",
+    metaKeyword: "",
+    pageUrl: "",
+    heading: "",
+    category: "",
+    status: "",
+  });
+  const handleblogForm = (e) => {
+    const { value, name } = e.target;
+    setBlogFrom({ ...blogForm, [name]: value });
+  };
   return (
     <div>
       <ReactQuill
-        value={value}
-        onChange={setValue}
+        value={blogForm.content}
+        onChange={(value) => setBlogFrom({ ...blogForm, content: value })}
         formats={Editorformats}
         modules={Editormodules}
       />
@@ -54,17 +67,47 @@ const TextEditor = () => {
           __html: value,
         }}
       />
-      <input placeholder="meta title" />
-      <input placeholder="meta keyword" />
-      <input placeholder="meta description" />
-      <input placeholder="Heading" />
-      <input placeholder="pageUrl" />
+      <input
+        placeholder="meta title"
+        name="metaTitle"
+        type="text"
+        value={blogForm.metaTitle}
+        onChange={handleblogForm}
+      />
+      <input
+        placeholder="meta keyword"
+        name="metaKeyword"
+        type="text"
+        value={blogForm.metaKeyword}
+        onChange={handleblogForm}
+      />
+      <input
+        placeholder="meta description"
+        name="metaDescription"
+        type="text"
+        value={blogForm.metaDescription}
+        onChange={handleblogForm}
+      />
+      <input
+        placeholder="Heading"
+        name="heading"
+        type="text"
+        value={blogForm.heading}
+        onChange={handleblogForm}
+      />
+      <input
+        placeholder="pageUrl"
+        name="pageUrl"
+        type="text"
+        value={blogForm.pageUrl}
+        onChange={handleblogForm}
+      />
       <input placeholder="Image" />
-      <select name="category" id="category">
+      <select name="category" id="category" onChange={handleblogForm}>
         <option value="travel">travel</option>
         <option value="food">food</option>
       </select>
-      <select name="status" id="status">
+      <select name="status" id="status" onChange={handleblogForm}>
         <option value="Active">Active</option>
         <option value="inActive">inActive</option>
       </select>
