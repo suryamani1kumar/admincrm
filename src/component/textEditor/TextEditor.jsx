@@ -55,63 +55,123 @@ const TextEditor = () => {
     setBlogFrom({ ...blogForm, [name]: value });
   };
   return (
-    <div>
-      <ReactQuill
-        value={blogForm.content}
-        onChange={(value) => setBlogFrom({ ...blogForm, content: value })}
-        formats={Editorformats}
-        modules={Editormodules}
-      />
-      <div
-        dangerouslySetInnerHTML={{
-          __html: value,
-        }}
-      />
-      <input
-        placeholder="meta title"
-        name="metaTitle"
-        type="text"
-        value={blogForm.metaTitle}
-        onChange={handleblogForm}
-      />
-      <input
-        placeholder="meta keyword"
-        name="metaKeyword"
-        type="text"
-        value={blogForm.metaKeyword}
-        onChange={handleblogForm}
-      />
-      <input
-        placeholder="meta description"
-        name="metaDescription"
-        type="text"
-        value={blogForm.metaDescription}
-        onChange={handleblogForm}
-      />
-      <input
-        placeholder="Heading"
-        name="heading"
-        type="text"
-        value={blogForm.heading}
-        onChange={handleblogForm}
-      />
-      <input
-        placeholder="pageUrl"
-        name="pageUrl"
-        type="text"
-        value={blogForm.pageUrl}
-        onChange={handleblogForm}
-      />
-      <input placeholder="Image" />
-      <select name="category" id="category" onChange={handleblogForm}>
-        <option value="travel">travel</option>
-        <option value="food">food</option>
-      </select>
-      <select name="status" id="status" onChange={handleblogForm}>
-        <option value="Active">Active</option>
-        <option value="inActive">inActive</option>
-      </select>
-    </div>
+   <Container>
+        <Form>
+          <Row className="mb-3">
+            <Col>
+              <Form.Group>
+                <Form.Label>Meta Title</Form.Label>
+                <Form.Control
+                  placeholder="meta title"
+                  name="metaTitle"
+                  type="text"
+                  value={blogForm.metaTitle}
+                  onChange={handleblogForm}
+                />
+              </Form.Group>
+            </Col>
+            <Col>
+              <Form.Group>
+                <Form.Label>Meta Keyword</Form.Label>
+                <Form.Control
+                  placeholder="meta keyword"
+                  name="metaKeyword"
+                  type="text"
+                  value={blogForm.metaKeyword}
+                  onChange={handleblogForm}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row className="mb-3">
+            <Col>
+              <Form.Group>
+                <Form.Label>Meta Description</Form.Label>
+                <Form.Control
+                  placeholder="meta description"
+                  name="metaDescription"
+                  type="text"
+                  value={blogForm.metaDescription}
+                  onChange={handleblogForm}
+                />
+              </Form.Group>
+            </Col>
+            <Col>
+              <Form.Group>
+                <Form.Label>Heading</Form.Label>
+                <Form.Control
+                  placeholder="Heading"
+                  name="heading"
+                  type="text"
+                  value={blogForm.heading}
+                  onChange={handleblogForm}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row className="mb-3">
+            <Col>
+              <Form.Group>
+                <Form.Label>PageUrl</Form.Label>
+                <Form.Control
+                  placeholder="pageUrl"
+                  name="pageUrl"
+                  type="text"
+                  value={blogForm.pageUrl}
+                  onChange={handleblogForm}
+                />
+              </Form.Group>
+            </Col>
+            <Col>
+              <Row>
+                <Col>
+                  <Form.Group>
+                    <Form.Label>Image</Form.Label>
+                    <Form.Control placeholder="Image" type="file" />
+                  </Form.Group>
+                </Col>
+                <Col>
+                  <Form.Label>Category</Form.Label>
+                  <Form.Select
+                    name="category"
+                    id="category"
+                    onChange={handleblogForm}
+                  >
+                    <option>Open this select menu</option>
+                    <option value="travel">travel</option>
+                    <option value="food">food</option>
+                  </Form.Select>
+                </Col>
+                <Col>
+                  <Form.Label>Status</Form.Label>
+                  <Form.Select
+                    name="status"
+                    id="status"
+                    onChange={handleblogForm}
+                  >
+                    <option>Open this select menu</option>
+                    <option value="Active">Active</option>
+                    <option value="inActive">inActive</option>
+                  </Form.Select>
+                </Col>
+              </Row>{" "}
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <ReactQuill
+                value={blogForm.content}
+                onChange={(value) =>
+                  setBlogFrom({ ...blogForm, content: value })
+                }
+                style={{ height: "300px" }}
+                // formats={formats}
+                // modules={modules }
+              />
+            </Col>
+          </Row>{" "}
+        </Form>
+      </Container>
   );
 };
 
