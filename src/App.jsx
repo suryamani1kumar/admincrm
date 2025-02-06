@@ -1,20 +1,36 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import './App.css';
-import Login from './component/login/Login';
-import TextEditor from './component/textEditor/TextEditor';
-import SiderNav from './component/sidenav/SiderNav';
-
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import "./App.css";
+import Login from "./component/login/Login";
+import TextEditor from "./component/textEditor/TextEditor";
+import SiderNav from "./component/sidenav/SiderNav";
+import { useState } from "react";
+const routes = [{ path: "/blog", Component: TextEditor }];
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   return (
-    <>
-      <BrowserRouter>
+    <BrowserRouter>
+      <div className={isAuthenticated ? "d-flex" : "d-block"}>
+        {isAuthenticated && <SiderNav />}
+
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/dashboard" element={<SiderNav />} />
-          <Route path="/blog" element={<TextEditor />}></Route>
+          {!isAuthenticated && (
+            <Route
+              path={"/"}
+              element={<Login setIsAuthenticated={setIsAuthenticated} />}
+            />
+          )}
+          {routes.map(({ path, Component }) => (
+            <Route
+              key={path}
+              path={path}
+              element={
+                isAuthenticated ? <Component /> : <Navigate to="/" replace />
+              }
+            />
+          ))}
         </Routes>
-      </BrowserRouter>
-    </>
+      </div>
+    </BrowserRouter>
   );
 }
 
