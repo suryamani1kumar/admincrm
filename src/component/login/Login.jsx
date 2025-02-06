@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { MdError } from 'react-icons/md';
 import { useNavigate } from 'react-router';
 
-const Login = () => {
+const Login = ({ setIsAuthenticated }) => {
   let navigate = useNavigate();
 
   const [passwordHideShow, setPasswordHideShow] = useState(true);
@@ -51,7 +51,8 @@ const Login = () => {
       loginDetails.userormail == 'triploom_1234' &&
       loginDetails.password == 'triploom_1234'
     ) {
-      navigate('/dashboard');
+      setIsAuthenticated(true);
+      navigate("/blog");
     }
   };
 
