@@ -50,7 +50,7 @@ const SiderNav = () => {
             <p className="title">Main</p>
             <ul>
               <li>
-                <Link href="/dashboard">
+                <Link to="/dashboard">
                   <LuLayoutDashboard />
                   <span className="text">Dashboard</span>
                 </Link>
@@ -82,7 +82,7 @@ const SiderNav = () => {
                 )}
               </li>
               <li>
-                <Link href="/blog">
+                <Link to="/blog">
                   <LuLayoutDashboard />
                   <span className="text">Blog</span>
                 </Link>
