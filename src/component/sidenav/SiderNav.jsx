@@ -82,7 +82,7 @@ const SiderNav = () => {
                 )}
               </li>
               <li>
-                <Link to="/blog">
+                <Link to="/addblog">
                   <LuLayoutDashboard />
                   <span className="text">Blog</span>
                 </Link>

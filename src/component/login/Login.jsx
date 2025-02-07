@@ -5,9 +5,9 @@ import { useState } from 'react';
 import { MdError } from 'react-icons/md';
 import { useNavigate } from 'react-router';
 
-const Login = ({ setIsAuthenticated }) => {
+const Login = (props) => {
+  const { setIsAuthenticated } = props;
   let navigate = useNavigate();
-
   const [passwordHideShow, setPasswordHideShow] = useState(true);
   const [loginDetails, setLoginDetails] = useState({
     password: '',
@@ -52,7 +52,7 @@ const Login = ({ setIsAuthenticated }) => {
       loginDetails.password == 'triploom_1234'
     ) {
       setIsAuthenticated(true);
-      navigate("/blog");
+      navigate('/dashboard');
     }
   };
 
