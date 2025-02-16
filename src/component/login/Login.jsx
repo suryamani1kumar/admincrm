@@ -4,6 +4,7 @@ import { BiSolidHide, BiSolidShow } from 'react-icons/bi';
 import { useState } from 'react';
 import { MdError } from 'react-icons/md';
 import { useNavigate } from 'react-router';
+import { axiosInstance } from "../../utils/axiosInstance";
 
 const Login = (props) => {
   const { setIsAuthenticated } = props;
@@ -30,30 +31,34 @@ const Login = (props) => {
   const handlelogin = (e) => {
     e.preventDefault();
     if (!loginDetails.userormail && !loginDetails.password) {
-      setErrorMessage({ password: 'error', userormail: 'error' });
+      setErrorMessage({ password: "error", userormail: "error" });
       return;
     } else if (!loginDetails.userormail) {
       setErrorMessage({
-        userormail: 'Please fill out email or username fields.',
+        userormail: "Please fill out email or username fields.",
       });
       return;
-    } else if (loginDetails.userormail !== 'triploom_1234') {
-      setErrorMessage({ userormail: 'Please check email or username.' });
-      return;
-    } else if (!loginDetails.password) {
-      setErrorMessage({ password: 'Please fill out password fields.' });
-      return;
-    } else if (loginDetails.password !== 'triploom_1234') {
-      setErrorMessage({ password: 'Please check password fields.' });
-      return;
     }
-    if (
-      loginDetails.userormail == 'triploom_1234' &&
-      loginDetails.password == 'triploom_1234'
-    ) {
-      setIsAuthenticated(true);
-      navigate('/dashboard');
-    }
+    const body = {
+      userIdOrmail: loginDetails.userormail,
+      password: loginDetails.password,
+    };
+    axiosInstance
+      .post(`/api/login`, body)
+      .then((res) => {
+        console.log("res", res);
+        setIsAuthenticated(true);
+        navigate("/dashboard");
+      })
+      .catch((err) => {
+        if (err?.response?.status === 403) {
+          alert("Access Denied!");
+        } else if (err?.response?.status === 404) {
+          alert(err.message);
+        } else {
+          console.log("error", err.message);
+        }
+      });
   };
 
   return (
