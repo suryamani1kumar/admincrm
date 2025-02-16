@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import 'react-quill/dist/quill.snow.css';
 import ReactQuill from 'react-quill';
-import { Col, Container, Form, Row } from 'react-bootstrap';
+import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 
 const Editorformats = [
   'header',
@@ -55,9 +55,12 @@ const TextEditor = () => {
     const { value, name } = e.target;
     setBlogFrom({ ...blogForm, [name]: value });
   };
+  const sumbitBlog = (e) => {
+    e.preventDefault();
+  };
   return (
     <Container>
-      <Form>
+      <Form onSubmit={sumbitBlog}>
         <Row className="mb-3">
           <Col>
             <Form.Group>
@@ -168,7 +171,8 @@ const TextEditor = () => {
               modules={Editormodules}
             />
           </Col>
-        </Row>{' '}
+        </Row>
+        <Button type="sumbit">Sumbit</Button>
       </Form>
     </Container>
   );
