@@ -2,43 +2,7 @@ import { useState } from 'react';
 import 'react-quill/dist/quill.snow.css';
 import ReactQuill from 'react-quill';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
-
-const Editorformats = [
-  'header',
-  'font',
-  'size',
-  'bold',
-  'italic',
-  'underline',
-  'strike',
-  'blockquote',
-  'list',
-  'bullet',
-  'indent',
-  'link',
-  'image',
-  'video',
-  'color',
-  'background',
-];
-
-const Editormodules = {
-  toolbar: [
-    [{ header: [1, 2, 3, 4, false] }],
-    [{ font: [] }],
-    [{ size: [] }],
-    ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-    [{ color: [] }, { background: [] }],
-    [
-      { list: 'ordered' },
-      { list: 'bullet' },
-      { indent: '-1' },
-      { indent: '+1' },
-    ],
-    ['link', 'image', 'video'],
-    ['clean'],
-  ],
-};
+import { Editorformats, Editormodules } from '../Data';
 
 const TextEditor = () => {
   const [blogForm, setBlogFrom] = useState({
@@ -141,7 +105,7 @@ const TextEditor = () => {
                   id="category"
                   onChange={handleblogForm}
                 >
-                  <option>Open this select menu</option>
+                  <option>select menu</option>
                   <option value="travel">travel</option>
                   <option value="food">food</option>
                 </Form.Select>
@@ -153,7 +117,7 @@ const TextEditor = () => {
                   id="status"
                   onChange={handleblogForm}
                 >
-                  <option>Open this select menu</option>
+                  <option>select menu</option>
                   <option value="Active">Active</option>
                   <option value="inActive">inActive</option>
                 </Form.Select>
