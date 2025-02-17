@@ -2,11 +2,19 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Login from './component/login/Login';
 import SiderNav from './component/sidenav/SiderNav';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import { routes } from './utils/routes';
+import Cookies from "js-cookie";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
+  useEffect(() => {
+    const access_token = Cookies.get("a_token");
+    const refesh_token = Cookies.get("r_token");
+    if (access_token || refesh_token) {
+      setIsAuthenticated(true);
+    }
+  }, [isAuthenticated]);
   return (
     <BrowserRouter>
       <div className={isAuthenticated ? 'd-flex' : 'd-block'}>
