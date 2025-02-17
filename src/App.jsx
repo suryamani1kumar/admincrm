@@ -7,7 +7,7 @@ import { routes } from './utils/routes';
 import Cookies from "js-cookie";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   useEffect(() => {
     const access_token = Cookies.get("a_token");
     const refesh_token = Cookies.get("r_token");
