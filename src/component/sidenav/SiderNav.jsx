@@ -45,9 +45,8 @@ const SiderNav = () => {
           </div>
         </div>
 
-        <div className="nav">
+        <div className="nav navmenu">
           <div className="menu">
-            <p className="title">Main</p>
             <ul>
               <li>
                 <Link to="/dashboard">
