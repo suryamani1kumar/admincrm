@@ -93,12 +93,6 @@ const TextEditor = () => {
           <Col>
             <Row>
               <Col>
-                <Form.Group>
-                  <Form.Label>Image</Form.Label>
-                  <Form.Control placeholder="Image" type="file" />
-                </Form.Group>
-              </Col>
-              <Col>
                 <Form.Label>Category</Form.Label>
                 <Form.Select
                   name="category"
@@ -125,12 +119,20 @@ const TextEditor = () => {
             </Row>{' '}
           </Col>
         </Row>
-        <Row>
+        <Row className="mb-3">
+          <Col>
+            <Form.Group>
+              <Form.Label>Image</Form.Label>
+              <Form.Control placeholder="Image" type="file" />
+            </Form.Group>
+          </Col>
+        </Row>
+        <Row className="mb-3">
           <Col>
             <ReactQuill
               value={blogForm.content}
               onChange={(value) => setBlogFrom({ ...blogForm, content: value })}
-              style={{ height: '300px' }}
+              style={{ height: "300px" }}
               formats={Editorformats}
               modules={Editormodules}
             />
