@@ -19,7 +19,7 @@ function App() {
     <BrowserRouter>
       <div className={isAuthenticated ? 'd-flex' : 'd-block'}>
         {isAuthenticated && <SiderNav />}
-
+<div className="w-100">
         <Routes>
           {!isAuthenticated && (
             <Route
@@ -37,6 +37,7 @@ function App() {
             />
           ))}
         </Routes>
+  </div>
       </div>
     </BrowserRouter>
   );
