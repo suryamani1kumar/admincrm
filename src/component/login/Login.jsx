@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { MdError } from 'react-icons/md';
 import { useNavigate } from 'react-router';
 import { axiosInstance } from '../../utils/axiosInstance';
+import Loader from '../loader/Loader';
 
 const Login = (props) => {
   const { setIsAuthenticated } = props;
@@ -15,6 +16,7 @@ const Login = (props) => {
     userormail: '',
   });
   const [errorMessage, setErrorMessage] = useState({});
+  const [laoding, setLoading] = useState(false);
 
   const handleloginDetails = (e) => {
     const { value, name } = e.target;
@@ -43,12 +45,14 @@ const Login = (props) => {
       userIdOrmail: loginDetails.userormail,
       password: loginDetails.password,
     };
+    setLoading(true);
     axiosInstance
       .post(`/api/login`, body)
       .then((res) => {
         console.log('res', res);
         setIsAuthenticated(true);
         navigate('/dashboard');
+        setLoading(false);
       })
       .catch((err) => {
         if (err?.response?.status === 403) {
@@ -58,6 +62,7 @@ const Login = (props) => {
         } else {
           console.log('error', err.message);
         }
+        setLoading(false);
       });
   };
 
@@ -139,6 +144,8 @@ const Login = (props) => {
           </form>
         </div>
       </div>
+
+      {laoding && <Loader />}
     </div>
   );
 };

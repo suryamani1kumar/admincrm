@@ -8,6 +8,7 @@ import {
   MdOutlineKeyboardArrowDown,
 } from 'react-icons/md';
 import { Link } from 'react-router-dom';
+import { FaRegUserCircle } from 'react-icons/fa';
 
 const SiderNav = () => {
   const [activeMenu, setActiveMenu] = useState(null);
@@ -33,11 +34,8 @@ const SiderNav = () => {
         </div>
 
         <div className="head">
-          <div className="user-img">
-            <img
-              src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MTUzMjAyMTh8&ixlib=rb-4.0.3&q=85"
-              alt="User"
-            />
+          <div className="user-icon">
+            <FaRegUserCircle />
           </div>
           <div className="user-details">
             <p className="title">web developer</p>
