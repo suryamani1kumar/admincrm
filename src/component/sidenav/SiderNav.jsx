@@ -7,10 +7,12 @@ import {
   MdOutlineArrowForwardIos,
   MdOutlineKeyboardArrowDown,
 } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaRegUserCircle } from 'react-icons/fa';
+import { axiosInstance } from '../../utils/axiosInstance';
 
-const SiderNav = () => {
+const SiderNav = ({ setIsAuthenticated }) => {
+  let navigate = useNavigate();
   const [activeMenu, setActiveMenu] = useState(null);
   const [isSidebarActive, setIsSidebarActive] = useState(true);
 
@@ -21,7 +23,16 @@ const SiderNav = () => {
   const toggleSidebar = () => {
     setIsSidebarActive(!isSidebarActive);
   };
-  console.log('activeMenu', activeMenu);
+  const logout = () => {
+    axiosInstance
+      .post('/api/logout')
+      .then((res) => {
+        console.log('res', res);
+        navigate('/');
+        setIsAuthenticated(false);
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <div>
@@ -90,10 +101,10 @@ const SiderNav = () => {
           <div className="menu">
             <ul>
               <li>
-                <a href="/">
+                <span onClick={logout}>
                   <TbLogout />
                   <span className="text">Logout</span>
-                </a>
+                </span>
               </li>
             </ul>
           </div>

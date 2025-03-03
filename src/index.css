@@ -82,7 +82,8 @@ body {
   margin-bottom: 5px;
 }
 
-.menu ul li a {
+.menu ul li a,
+.menu ul li span {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -93,10 +94,13 @@ body {
   padding: 12px 8px;
   border-radius: 8px;
   transition: all 0.3s;
+  cursor: pointer;
 }
 
 .menu ul li>a:hover,
-.menu ul li.active>a {
+.menu ul li>span:hover,
+.menu ul li.active>a,
+.menu ul li.active>span {
   color: #000;
   background-color: #f6f6f6;
 }
@@ -178,14 +182,16 @@ body {
   display: none;
 }
 
-.sidebar.active .menu>ul>li>a {
+.sidebar.active .menu>ul>li>a,
+.sidebar.active .menu>ul>li>span {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.sidebar.active .menu>ul>li>a .text {
+.sidebar.active .menu>ul>li>a .text,
+.sidebar.active .menu>ul>li>span .text {
   position: absolute;
   left: 70px;
   top: 50%;
@@ -199,7 +205,8 @@ body {
   transition: all 0.3s;
 }
 
-.sidebar.active .menu>ul>li>a .text::after {
+.sidebar.active .menu>ul>li>a .text::after,
+.sidebar.active .menu>ul>li>span .text::after {
   content: "";
   position: absolute;
   left: -5px;
@@ -212,7 +219,8 @@ body {
   z-index: -1;
 }
 
-.sidebar.active .menu>ul>li>a:hover .text {
+.sidebar.active .menu>ul>li>a:hover .text,
+.sidebar.active .menu>ul>li>span:hover .text {
   left: 50px;
   opacity: 1;
   visibility: visible;
