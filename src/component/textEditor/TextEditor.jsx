@@ -14,6 +14,9 @@ const TextEditor = () => {
     heading: '',
     category: '',
     status: '',
+    faqs: [{ ques: "", ans: "" }],
+    authorName: "",
+    authorDescription: "",
   });
   const handleblogForm = (e) => {
     const { value, name } = e.target;
@@ -127,6 +130,42 @@ const TextEditor = () => {
             </Form.Group>
           </Col>
         </Row>
+        <Row className="mb-3">
+            <Col>
+              <Form.Group>
+                <Form.Label>Author Name</Form.Label>
+                <Form.Control
+                  placeholder="Author Name"
+                  name="authorName"
+                  type="text"
+                  value={blogForm.authorName}
+                  onChange={handleblogForm}
+                />
+              </Form.Group>
+            </Col>
+            <Col>
+              <FloatingLabel controlId="floatingTextarea2" label="About Author">
+                <Form.Control
+                  as="textarea"
+                  placeholder="About Author comment"
+                  style={{ height: "100px" }}
+                  value={blogForm.authorDescription}
+                  onChange={handleblogForm}
+                />
+              </FloatingLabel>
+            </Col>
+          </Row>
+          <Row className="mb-3">
+            <Col>
+              <Form.Group>
+                <Form.Label>FAQS Question</Form.Label>
+                <Form.Control placeholder="FAQS Question" />
+              </Form.Group>
+            </Col>
+            <Col>
+              <ReactQuill style={{ height: "200px" }} />
+            </Col>
+          </Row>
         <Row className="mb-3">
           <Col>
             <ReactQuill
