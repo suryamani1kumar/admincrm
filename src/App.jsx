@@ -8,6 +8,7 @@ import Cookies from 'js-cookie';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isSidebarActive, setIsSidebarActive] = useState(true);
   useEffect(() => {
     const access_token = Cookies.get('a_token');
     const refesh_token = Cookies.get('r_token');
@@ -18,29 +19,37 @@ function App() {
   console.log(isAuthenticated);
   return (
     <BrowserRouter>
-      <div className={isAuthenticated ? 'd-flex' : 'd-block'}>
-        {isAuthenticated && (
-          <SiderNav setIsAuthenticated={setIsAuthenticated} />
-        )}
-        <div className="w-100">
-          <Routes>
-            {!isAuthenticated && (
-              <Route
-                path={'/'}
-                element={<Login setIsAuthenticated={setIsAuthenticated} />}
-              />
-            )}
-            {routes.map(({ path, Component }) => (
-              <Route
-                key={path}
-                path={path}
-                element={
-                  isAuthenticated ? <Component /> : <Navigate to="/" replace />
-                }
-              />
-            ))}
-          </Routes>
-        </div>
+      {isAuthenticated && (
+        <SiderNav
+          setIsAuthenticated={setIsAuthenticated}
+          isSidebarActive={isSidebarActive}
+          setIsSidebarActive={setIsSidebarActive}
+        />
+      )}
+      <div
+        className="content"
+        style={{
+          width: isSidebarActive ? 'calc(100% - 92px)' : 'calc(100% - 250px)',
+          marginLeft: isSidebarActive ? '92px' : '250px',
+        }}
+      >
+        <Routes>
+          {!isAuthenticated && (
+            <Route
+              path={'/'}
+              element={<Login setIsAuthenticated={setIsAuthenticated} />}
+            />
+          )}
+          {routes.map(({ path, Component }) => (
+            <Route
+              key={path}
+              path={path}
+              element={
+                isAuthenticated ? <Component /> : <Navigate to="/" replace />
+              }
+            />
+          ))}
+        </Routes>
       </div>
     </BrowserRouter>
   );

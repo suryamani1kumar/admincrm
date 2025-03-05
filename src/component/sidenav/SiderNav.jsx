@@ -11,10 +11,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaRegUserCircle } from 'react-icons/fa';
 import { axiosInstance } from '../../utils/axiosInstance';
 
-const SiderNav = ({ setIsAuthenticated }) => {
+const SiderNav = ({
+  setIsAuthenticated,
+  isSidebarActive,
+  setIsSidebarActive,
+}) => {
   let navigate = useNavigate();
   const [activeMenu, setActiveMenu] = useState(null);
-  const [isSidebarActive, setIsSidebarActive] = useState(true);
 
   const handleMenuClick = (index) => {
     setActiveMenu(activeMenu === index ? null : index);

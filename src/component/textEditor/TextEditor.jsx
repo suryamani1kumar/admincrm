@@ -1,7 +1,14 @@
 import { useState } from 'react';
 import 'react-quill/dist/quill.snow.css';
 import ReactQuill from 'react-quill';
-import { Button, Col, Container, Form, Row } from 'react-bootstrap';
+import {
+  Button,
+  Col,
+  Container,
+  Form,
+  Row,
+  FloatingLabel,
+} from 'react-bootstrap';
 import { Editorformats, Editormodules } from '../Data';
 
 const TextEditor = () => {
@@ -14,9 +21,9 @@ const TextEditor = () => {
     heading: '',
     category: '',
     status: '',
-    faqs: [{ ques: "", ans: "" }],
-    authorName: "",
-    authorDescription: "",
+    faqs: [{ ques: '', ans: '' }],
+    authorName: '',
+    authorDescription: '',
   });
   const handleblogForm = (e) => {
     const { value, name } = e.target;
@@ -131,47 +138,48 @@ const TextEditor = () => {
           </Col>
         </Row>
         <Row className="mb-3">
-            <Col>
-              <Form.Group>
-                <Form.Label>Author Name</Form.Label>
-                <Form.Control
-                  placeholder="Author Name"
-                  name="authorName"
-                  type="text"
-                  value={blogForm.authorName}
-                  onChange={handleblogForm}
-                />
-              </Form.Group>
-            </Col>
-            <Col>
-              <FloatingLabel controlId="floatingTextarea2" label="About Author">
-                <Form.Control
-                  as="textarea"
-                  placeholder="About Author comment"
-                  style={{ height: "100px" }}
-                  value={blogForm.authorDescription}
-                  onChange={handleblogForm}
-                />
-              </FloatingLabel>
-            </Col>
-          </Row>
-          <Row className="mb-3">
-            <Col>
-              <Form.Group>
-                <Form.Label>FAQS Question</Form.Label>
-                <Form.Control placeholder="FAQS Question" />
-              </Form.Group>
-            </Col>
-            <Col>
-              <ReactQuill style={{ height: "200px" }} />
-            </Col>
-          </Row>
+          <Col>
+            <Form.Group>
+              <Form.Label>Author Name</Form.Label>
+              <Form.Control
+                placeholder="Author Name"
+                name="authorName"
+                type="text"
+                value={blogForm.authorName}
+                onChange={handleblogForm}
+              />
+            </Form.Group>
+          </Col>
+          <Col>
+            <Form.Group>
+              <Form.Label>FAQS Question</Form.Label>
+              <Form.Control placeholder="FAQS Question" />
+            </Form.Group>
+          </Col>
+        </Row>
+        <Row className="mb-3">
+          <Col>
+            <FloatingLabel controlId="floatingTextarea2" label="About Author">
+              <Form.Control
+                as="textarea"
+                placeholder="About Author comment"
+                style={{ height: '100px' }}
+                value={blogForm.authorDescription}
+                onChange={handleblogForm}
+              />
+            </FloatingLabel>
+          </Col>
+
+          <Col>
+            <ReactQuill style={{ height: '60px' }} />
+          </Col>
+        </Row>
         <Row className="mb-3">
           <Col>
             <ReactQuill
               value={blogForm.content}
               onChange={(value) => setBlogFrom({ ...blogForm, content: value })}
-              style={{ height: "300px" }}
+              style={{ height: '300px' }}
               formats={Editorformats}
               modules={Editormodules}
             />
