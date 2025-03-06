@@ -7,7 +7,7 @@ import { routes } from './utils/routes';
 import Cookies from 'js-cookie';
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [isSidebarActive, setIsSidebarActive] = useState(true);
   useEffect(() => {
     const access_token = Cookies.get('a_token');
@@ -16,7 +16,7 @@ function App() {
       setIsAuthenticated(true);
     }
   }, [isAuthenticated]);
-  console.log(isAuthenticated);
+
   return (
     <BrowserRouter>
       {isAuthenticated && (

@@ -25,9 +25,26 @@ const TextEditor = () => {
     authorName: '',
     authorDescription: '',
   });
+
   const handleblogForm = (e) => {
     const { value, name } = e.target;
     setBlogFrom({ ...blogForm, [name]: value });
+  };
+
+  const handlemoreFAQ = () => {
+    setBlogFrom({
+      ...blogForm,
+      faqs: [...blogForm.faqs, { ques: '', ans: '' }],
+    });
+  };
+
+  const handledeleteFAQ = (index) => {
+    let Faq = [...blogForm.faqs];
+    Faq.splice(index, 1);
+    setBlogFrom({
+      ...blogForm,
+      faqs: Faq,
+    });
   };
   const sumbitBlog = (e) => {
     e.preventDefault();
@@ -139,6 +156,16 @@ const TextEditor = () => {
         </Row>
         <Row className="mb-3">
           <Col>
+            <ReactQuill
+              value={blogForm.content}
+              onChange={(value) => setBlogFrom({ ...blogForm, content: value })}
+              formats={Editorformats}
+              modules={Editormodules}
+            />
+          </Col>
+        </Row>
+        <Row className="mb-3">
+          <Col>
             <Form.Group>
               <Form.Label>Author Name</Form.Label>
               <Form.Control
@@ -151,14 +178,6 @@ const TextEditor = () => {
             </Form.Group>
           </Col>
           <Col>
-            <Form.Group>
-              <Form.Label>FAQS Question</Form.Label>
-              <Form.Control placeholder="FAQS Question" />
-            </Form.Group>
-          </Col>
-        </Row>
-        <Row className="mb-3">
-          <Col>
             <FloatingLabel controlId="floatingTextarea2" label="About Author">
               <Form.Control
                 as="textarea"
@@ -169,21 +188,37 @@ const TextEditor = () => {
               />
             </FloatingLabel>
           </Col>
-
-          <Col>
-            <ReactQuill style={{ height: '60px' }} />
-          </Col>
         </Row>
-        <Row className="mb-3">
-          <Col>
-            <ReactQuill
-              value={blogForm.content}
-              onChange={(value) => setBlogFrom({ ...blogForm, content: value })}
-              style={{ height: '300px' }}
-              formats={Editorformats}
-              modules={Editormodules}
-            />
-          </Col>
+        {blogForm.faqs.map((faqitem, i) => (
+          <Row className="mb-3" key={i}>
+            <Col>
+              <Form.Group>
+                <Form.Label>FAQS Question {i}</Form.Label>
+                <Form.Control
+                  placeholder="FAQS Question"
+                  name="faqs"
+                  type="text"
+                  value={faqitem.ques}
+                  onChange={() => console.log('first')}
+                />
+              </Form.Group>
+            </Col>
+
+            <Col>
+              <ReactQuill
+                value={faqitem.ques}
+                onChange={() => console.log('first')}
+              />
+            </Col>
+            {blogForm.faqs.length > 1 && (
+              <Col>
+                <Button onClick={() => handledeleteFAQ(i)}>Delete FAQ</Button>
+              </Col>
+            )}
+          </Row>
+        ))}
+        <Row>
+          <Button onClick={handlemoreFAQ}>Add FAQ</Button>
         </Row>
         <Button type="sumbit">Sumbit</Button>
       </Form>
