@@ -46,6 +46,15 @@ const TextEditor = () => {
       faqs: Faq,
     });
   };
+  
+  const handlefaqs = (value, name, index) => {
+    let faqsArray = [...blogForm.faqs];
+    faqsArray[index][name] = value;
+    setBlogFrom({
+      ...blogForm,
+      faqs: faqsArray,
+    });
+  };
   const sumbitBlog = (e) => {
     e.preventDefault();
   };
@@ -199,15 +208,15 @@ const TextEditor = () => {
                   name="faqs"
                   type="text"
                   value={faqitem.ques}
-                  onChange={() => console.log('first')}
+                  onChange={() => handlefaqs(value,"ques",i)}
                 />
               </Form.Group>
             </Col>
 
             <Col>
               <ReactQuill
-                value={faqitem.ques}
-                onChange={() => console.log('first')}
+                value={faqitem.ans}
+                onChange={() => handlefaqs(value,"ans",i)}
               />
             </Col>
             {blogForm.faqs.length > 1 && (
