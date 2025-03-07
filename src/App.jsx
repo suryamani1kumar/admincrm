@@ -26,31 +26,38 @@ function App() {
           setIsSidebarActive={setIsSidebarActive}
         />
       )}
-      <div
-        className="content"
-        style={{
-          width: isSidebarActive ? 'calc(100% - 92px)' : 'calc(100% - 250px)',
-          marginLeft: isSidebarActive ? '92px' : '250px',
-        }}
-      >
-        <Routes>
-          {!isAuthenticated && (
-            <Route
-              path={'/'}
-              element={<Login setIsAuthenticated={setIsAuthenticated} />}
-            />
-          )}
-          {routes.map(({ path, Component }) => (
-            <Route
-              key={path}
-              path={path}
-              element={
-                isAuthenticated ? <Component /> : <Navigate to="/" replace />
-              }
-            />
-          ))}
-        </Routes>
-      </div>
+
+      <Routes>
+        {!isAuthenticated && (
+          <Route
+            path={'/'}
+            element={<Login setIsAuthenticated={setIsAuthenticated} />}
+          />
+        )}
+        {routes.map(({ path, Component }) => (
+          <Route
+            key={path}
+            path={path}
+            element={
+              isAuthenticated ? (
+                <div
+                  className="content"
+                  style={{
+                    width: isSidebarActive
+                      ? 'calc(100% - 92px)'
+                      : 'calc(100% - 250px)',
+                    marginLeft: isSidebarActive ? '92px' : '250px',
+                  }}
+                >
+                  <Component />
+                </div>
+              ) : (
+                <Navigate to="/" replace />
+              )
+            }
+          />
+        ))}
+      </Routes>
     </BrowserRouter>
   );
 }

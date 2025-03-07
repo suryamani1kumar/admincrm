@@ -46,7 +46,7 @@ const TextEditor = () => {
       faqs: Faq,
     });
   };
-  
+
   const handlefaqs = (value, name, index) => {
     let faqsArray = [...blogForm.faqs];
     faqsArray[index][name] = value;
@@ -55,6 +55,7 @@ const TextEditor = () => {
       faqs: faqsArray,
     });
   };
+
   const sumbitBlog = (e) => {
     e.preventDefault();
   };
@@ -202,13 +203,13 @@ const TextEditor = () => {
           <Row className="mb-3" key={i}>
             <Col>
               <Form.Group>
-                <Form.Label>FAQS Question {i}</Form.Label>
+                <Form.Label>FAQS Question</Form.Label>
                 <Form.Control
                   placeholder="FAQS Question"
                   name="faqs"
                   type="text"
                   value={faqitem.ques}
-                  onChange={() => handlefaqs(value,"ques",i)}
+                  onChange={(e) => handlefaqs(e.target.value, 'ques', i)}
                 />
               </Form.Group>
             </Col>
@@ -216,17 +217,22 @@ const TextEditor = () => {
             <Col>
               <ReactQuill
                 value={faqitem.ans}
-                onChange={() => handlefaqs(value,"ans",i)}
+                onChange={(e) => handlefaqs(e.target.value, 'ans', i)}
               />
             </Col>
             {blogForm.faqs.length > 1 && (
-              <Col>
-                <Button onClick={() => handledeleteFAQ(i)}>Delete FAQ</Button>
+              <Col xs lg="1">
+                <Button
+                  onClick={() => handledeleteFAQ(i)}
+                  className="bg-danger border-danger"
+                >
+                  Delete
+                </Button>
               </Col>
             )}
           </Row>
         ))}
-        <Row>
+        <Row className="float-end">
           <Button onClick={handlemoreFAQ}>Add FAQ</Button>
         </Row>
         <Button type="sumbit">Sumbit</Button>
