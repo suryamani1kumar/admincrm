@@ -3,7 +3,7 @@ import { FaLock, FaUser } from 'react-icons/fa';
 import { BiSolidHide, BiSolidShow } from 'react-icons/bi';
 import { useState } from 'react';
 import { MdError } from 'react-icons/md';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router-dom';
 import { axiosInstance } from '../../utils/axiosInstance';
 import Loader from '../loader/Loader';
 
@@ -138,7 +138,7 @@ const Login = (props) => {
                 <input type="checkbox" /> Remember me
               </div>
               <div>
-                <a href="/forgotpassword">Forgot your password</a>
+                <Link to="/forgotpassword">Forgot your password</Link>
               </div>
             </div>
           </form>
