@@ -138,7 +138,7 @@ const Login = (props) => {
                 <input type="checkbox" /> Remember me
               </div>
               <div>
-                <a href="#">Forgot your password</a>
+                <a href="/forgotpassword">Forgot your password</a>
               </div>
             </div>
           </form>
