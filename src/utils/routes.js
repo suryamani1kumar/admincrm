@@ -1,7 +1,7 @@
-import Login from '../component/login/Login';
 import AddBlog from '../pages/addBlog';
 import Dashboard from '../pages/dashboard';
 import ForgetPassword from '../pages/ForgetPassword';
+import Login from '../pages/Login';
 
 export const protectedRoutes = [
   { path: '/dashboard', Component: Dashboard },
