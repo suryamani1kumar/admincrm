@@ -21,7 +21,7 @@ const TextEditor = () => {
     pageUrl: '',
     heading: '',
     category: '',
-    status: '',
+    active: '',
     faqs: [{ ques: '', ans: '' }],
     authorName: '',
     authorDescription: '',
@@ -149,8 +149,8 @@ const TextEditor = () => {
               <Col>
                 <Form.Label>Status</Form.Label>
                 <Form.Select
-                  name="status"
-                  id="status"
+                  name="active"
+                  id="active"
                   onChange={handleblogForm}
                 >
                   <option>select menu</option>
