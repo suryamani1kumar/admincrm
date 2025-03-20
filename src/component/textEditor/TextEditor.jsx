@@ -10,6 +10,7 @@ import {
   FloatingLabel,
 } from 'react-bootstrap';
 import { Editorformats, Editormodules } from '../Data';
+import { axiosInstance } from '../../utils/axiosInstance';
 
 const TextEditor = () => {
   const [blogForm, setBlogFrom] = useState({
@@ -58,6 +59,10 @@ const TextEditor = () => {
 
   const sumbitBlog = (e) => {
     e.preventDefault();
+    axiosInstance
+      .post('/api/addBlog', { ...blogForm, userid: '3123sas2@fsfs' })
+      .then((res) => console.log(res))
+      .catch((err) => console.log('error', err));
   };
   return (
     <Container>
@@ -149,8 +154,8 @@ const TextEditor = () => {
                   onChange={handleblogForm}
                 >
                   <option>select menu</option>
-                  <option value="Active">Active</option>
-                  <option value="inActive">inActive</option>
+                  <option value="true">Active</option>
+                  <option value="false">inActive</option>
                 </Form.Select>
               </Col>
             </Row>{' '}
