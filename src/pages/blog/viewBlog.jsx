@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
-import { axiosInstance } from '../../utils/axiosInstance';
-import Table from 'react-bootstrap/Table';
-import { FaEdit, FaEye, FaTrash } from 'react-icons/fa';
-import { IoEyeOff } from 'react-icons/io5';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { axiosInstance } from "../../utils/axiosInstance";
+import Table from "react-bootstrap/Table";
+import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
+import { IoEyeOff } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const ViewBlog = () => {
   const [allBlog, setAllBlog] = useState(null);
@@ -14,8 +14,26 @@ const ViewBlog = () => {
       .then((res) => {
         setAllBlog(res.data);
       })
-      .catch((err) => console.log('error', err));
+      .catch((err) => console.log("error", err));
   }, []);
+
+  const handleActive = (url, status) => {
+    axiosInstance
+      .get(`/api/blogStatus?pageurl=${url}&active=${!status}`)
+      .then((res) => {
+        setAllBlog(res.data);
+      })
+      .catch((err) => console.log("error", err));
+  };
+
+  const deleteBlog = (url) => {
+    axiosInstance
+      .get(`/api/deleteBlog?pageurl=${url}`)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log("error", err));
+  };
 
   return (
     <div>
@@ -35,16 +53,18 @@ const ViewBlog = () => {
               <td>{item.heading}</td>
               <td>{item.pageUrl}</td>
               <td>{item.category}</td>
-              <td>{item.status ? 'true' : 'false'}</td>
+              <td>{item.active ? "true" : "false"}</td>
               <td className="d-flex justify-content-around">
-                <p>{item.status ? <FaEye /> : <IoEyeOff />}</p>
+                <p onClick={() => handleActive(item.pageUrl, item.active)}>
+                  {item.active ? <FaEye /> : <IoEyeOff />}
+                </p>
                 <p>
                   <Link to={`/blog/${item.pageUrl}`}>
                     <FaEdit />
                   </Link>
                 </p>
-                <p>
-                  {' '}
+                <p onClick={() => deleteBlog(item.pageUrl)}>
+                  {" "}
                   <FaTrash />
                 </p>
               </td>
