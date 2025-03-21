@@ -116,6 +116,7 @@ const TextEditor = ({ blogForm, setBlogFrom, sumbit }) => {
                 <Form.Select
                   name="category"
                   id="category"
+                  value={blogForm.category}
                   onChange={handleblogForm}
                 >
                   <option>select menu</option>
@@ -128,6 +129,7 @@ const TextEditor = ({ blogForm, setBlogFrom, sumbit }) => {
                 <Form.Select
                   name="active"
                   id="active"
+                  value={blogForm.active}
                   onChange={handleblogForm}
                 >
                   <option>select menu</option>

@@ -20,7 +20,7 @@ const EditBlog = () => {
   return (
     singleBlog && (
       <TextEditor
-        blogForm={singleBlog?.blog}
+        blogForm={singleBlog.blog}
         setBlogFrom={setSingleBlog}
         sumbit={updateBlog}
       />

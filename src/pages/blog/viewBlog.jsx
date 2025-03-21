@@ -1,38 +1,42 @@
-import { useEffect, useState } from "react";
-import { axiosInstance } from "../../utils/axiosInstance";
-import Table from "react-bootstrap/Table";
-import { FaEdit, FaEye, FaTrash } from "react-icons/fa";
-import { IoEyeOff } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { axiosInstance } from '../../utils/axiosInstance';
+import Table from 'react-bootstrap/Table';
+import { FaEdit, FaEye, FaTrash } from 'react-icons/fa';
+import { IoEyeOff } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
 
 const ViewBlog = () => {
   const [allBlog, setAllBlog] = useState(null);
-
-  useEffect(() => {
+  const fetchAllBlog = () => {
     axiosInstance
       .get(`/api/allBlog?page=1&limit=4`)
       .then((res) => {
         setAllBlog(res.data);
       })
-      .catch((err) => console.log("error", err));
+      .catch((err) => console.log('error', err));
+  };
+  useEffect(() => {
+    fetchAllBlog();
   }, []);
 
   const handleActive = (url, status) => {
     axiosInstance
-      .get(`/api/blogStatus?pageurl=${url}&active=${!status}`)
+      .patch(`/api/blogStatus?pageurl=${url}&active=${!status}`)
       .then((res) => {
-        setAllBlog(res.data);
+        console.log(res);
+        fetchAllBlog();
       })
-      .catch((err) => console.log("error", err));
+      .catch((err) => console.log('error', err));
   };
 
   const deleteBlog = (url) => {
     axiosInstance
-      .get(`/api/deleteBlog?pageurl=${url}`)
+      .delete(`/api/deleteBlog?pageurl=${url}`)
       .then((res) => {
         console.log(res);
+        fetchAllBlog();
       })
-      .catch((err) => console.log("error", err));
+      .catch((err) => console.log('error', err));
   };
 
   return (
@@ -53,7 +57,7 @@ const ViewBlog = () => {
               <td>{item.heading}</td>
               <td>{item.pageUrl}</td>
               <td>{item.category}</td>
-              <td>{item.active ? "true" : "false"}</td>
+              <td>{item.active ? 'true' : 'false'}</td>
               <td className="d-flex justify-content-around">
                 <p onClick={() => handleActive(item.pageUrl, item.active)}>
                   {item.active ? <FaEye /> : <IoEyeOff />}
@@ -64,7 +68,7 @@ const ViewBlog = () => {
                   </Link>
                 </p>
                 <p onClick={() => deleteBlog(item.pageUrl)}>
-                  {" "}
+                  {' '}
                   <FaTrash />
                 </p>
               </td>
