@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import 'react-quill/dist/quill.snow.css';
 import ReactQuill from 'react-quill';
 import {
@@ -10,28 +9,13 @@ import {
   FloatingLabel,
 } from 'react-bootstrap';
 import { Editorformats, Editormodules } from '../Data';
-import { axiosInstance } from '../../utils/axiosInstance';
 
-const TextEditor = () => {
-  const [blogForm, setBlogFrom] = useState({
-    content: '',
-    metaTitle: '',
-    metaDescription: '',
-    metaKeyword: '',
-    pageUrl: '',
-    heading: '',
-    category: '',
-    active: '',
-    faqs: [{ ques: '', ans: '' }],
-    authorName: '',
-    authorDescription: '',
-  });
-
+const TextEditor = ({ blogForm, setBlogFrom, sumbit }) => {
   const handleblogForm = (e) => {
     const { value, name } = e.target;
     setBlogFrom({ ...blogForm, [name]: value });
   };
-
+  console.log('blogForm', blogForm);
   const handlemoreFAQ = () => {
     setBlogFrom({
       ...blogForm,
@@ -57,16 +41,9 @@ const TextEditor = () => {
     });
   };
 
-  const sumbitBlog = (e) => {
-    e.preventDefault();
-    axiosInstance
-      .post('/api/addBlog', { ...blogForm, userid: '3123sas2@fsfs' })
-      .then((res) => console.log(res))
-      .catch((err) => console.log('error', err));
-  };
   return (
     <Container>
-      <Form onSubmit={sumbitBlog}>
+      <Form onSubmit={sumbit}>
         <Row className="mb-3">
           <Col>
             <Form.Group>

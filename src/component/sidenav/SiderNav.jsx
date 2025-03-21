@@ -1,15 +1,15 @@
-import { useState } from "react";
-import { TbLogout } from "react-icons/tb";
-import { LuLayoutDashboard } from "react-icons/lu";
-import { FaRegUser } from "react-icons/fa";
-import { IoMdClose } from "react-icons/io";
+import { useState } from 'react';
+import { TbLogout } from 'react-icons/tb';
+import { LuLayoutDashboard } from 'react-icons/lu';
+import { FaRegUser } from 'react-icons/fa';
+import { IoMdClose } from 'react-icons/io';
 import {
   MdOutlineArrowForwardIos,
   MdOutlineKeyboardArrowDown,
-} from "react-icons/md";
-import { Link, useNavigate } from "react-router-dom";
-import { FaRegUserCircle } from "react-icons/fa";
-import { axiosInstance } from "../../utils/axiosInstance";
+} from 'react-icons/md';
+import { Link, useNavigate } from 'react-router-dom';
+import { FaRegUserCircle } from 'react-icons/fa';
+import { axiosInstance } from '../../utils/axiosInstance';
 
 const SiderNav = ({
   setIsAuthenticated,
@@ -28,10 +28,10 @@ const SiderNav = ({
   };
   const logout = () => {
     axiosInstance
-      .post("/api/logout")
+      .post('/api/logout')
       .then((res) => {
-        console.log("res", res);
-        navigate("/");
+        console.log('res', res);
+        navigate('/');
         setIsAuthenticated(false);
       })
       .catch((err) => console.log(err));
@@ -39,10 +39,7 @@ const SiderNav = ({
 
   return (
     <div>
-      {/* https://codepen.io/neeraj_1/pen/mdgXdxb */}
-      {/* https://codepen.io/kalvincalimag/pen/mdYbKoy */}
-
-      <div className={`sidebar ${isSidebarActive ? "active" : ""}`}>
+      <div className={`sidebar ${isSidebarActive ? 'active' : ''}`}>
         <div className="menu-btn" onClick={toggleSidebar}>
           {isSidebarActive ? <MdOutlineArrowForwardIos /> : <IoMdClose />}
         </div>
@@ -67,7 +64,7 @@ const SiderNav = ({
                 </Link>
               </li>
               <li
-                className={activeMenu === 1 ? "active" : ""}
+                className={activeMenu === 1 ? 'active' : ''}
                 onClick={() => handleMenuClick(1)}
               >
                 <a href="#">
@@ -78,7 +75,7 @@ const SiderNav = ({
                   </span>
                 </a>
                 {activeMenu === 1 && (
-                  <ul className="sub-menu" style={{ display: "block" }}>
+                  <ul className="sub-menu" style={{ display: 'block' }}>
                     <li>
                       <a href="#">
                         <span className="text">Add Users</span>
@@ -93,7 +90,7 @@ const SiderNav = ({
                 )}
               </li>
               <li
-                className={activeMenu === 2 ? "active" : ""}
+                className={activeMenu === 2 ? 'active' : ''}
                 onClick={() => handleMenuClick(2)}
               >
                 <span>
@@ -104,15 +101,15 @@ const SiderNav = ({
                   </span>
                 </span>
                 {activeMenu === 2 && (
-                  <ul className="sub-menu" style={{ display: "block" }}>
+                  <ul className="sub-menu" style={{ display: 'block' }}>
                     <li>
-                      <Link to="/addblog">
+                      <Link to="/blog/addblog">
                         <span className="text">Add Blog</span>
                       </Link>
                     </li>
                     <li>
-                      <Link to="/viewblog">
-                        <span className="text">View User</span>
+                      <Link to="/blog/viewblog">
+                        <span className="text">View Blog</span>
                       </Link>
                     </li>
                   </ul>
