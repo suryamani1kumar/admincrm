@@ -5,6 +5,7 @@ import { axiosInstance } from '../../utils/axiosInstance';
 const AddBlog = () => {
   const [blogForm, setBlogFrom] = useState({
     content: '',
+    smallDescription: '',
     metaTitle: '',
     metaDescription: '',
     metaKeyword: '',

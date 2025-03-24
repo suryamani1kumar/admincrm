@@ -85,20 +85,6 @@ const TextEditor = ({ blogForm, setBlogFrom, sumbit }) => {
           </Col>
           <Col>
             <Form.Group>
-              <Form.Label>Heading</Form.Label>
-              <Form.Control
-                placeholder="Heading"
-                name="heading"
-                type="text"
-                value={blogForm.heading}
-                onChange={handleblogForm}
-              />
-            </Form.Group>
-          </Col>
-        </Row>
-        <Row className="mb-3">
-          <Col>
-            <Form.Group>
               <Form.Label>PageUrl</Form.Label>
               <Form.Control
                 placeholder="pageUrl"
@@ -109,6 +95,8 @@ const TextEditor = ({ blogForm, setBlogFrom, sumbit }) => {
               />
             </Form.Group>
           </Col>
+        </Row>
+        <Row className="mb-3">
           <Col>
             <Row>
               <Col>
@@ -139,13 +127,36 @@ const TextEditor = ({ blogForm, setBlogFrom, sumbit }) => {
               </Col>
             </Row>{' '}
           </Col>
-        </Row>
-        <Row className="mb-3">
           <Col>
             <Form.Group>
               <Form.Label>Image</Form.Label>
               <Form.Control placeholder="Image" type="file" />
             </Form.Group>
+          </Col>
+        </Row>
+        <Row className="mb-3">
+          <Col>
+            <Form.Group>
+              <Form.Label>Heading</Form.Label>
+              <Form.Control
+                placeholder="Heading"
+                name="heading"
+                type="text"
+                value={blogForm.heading}
+                onChange={handleblogForm}
+              />
+            </Form.Group>
+          </Col>
+          <Col>
+            <Form.Label>Description</Form.Label>
+            <Form.Control
+              as="textarea"
+              placeholder="Description"
+              name="smallDescription"
+              style={{ height: '50px' }}
+              value={blogForm.smallDescription}
+              onChange={handleblogForm}
+            />
           </Col>
         </Row>
         <Row className="mb-3">
