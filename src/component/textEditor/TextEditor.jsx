@@ -1,13 +1,14 @@
 import 'react-quill/dist/quill.snow.css';
 import ReactQuill from 'react-quill';
 import {
+  Box,
   Button,
-  Col,
-  Container,
-  Form,
-  Row,
-  FloatingLabel,
-} from 'react-bootstrap';
+  Grid,
+  TextField,
+  MenuItem,
+  Typography,
+} from '@mui/material';
+import React from 'react';
 import { Editorformats, Editormodules } from '../Data';
 
 const TextEditor = ({ blogForm, setBlogFrom, sumbit }) => {
@@ -42,197 +43,201 @@ const TextEditor = ({ blogForm, setBlogFrom, sumbit }) => {
   };
 
   return (
-    <Container>
-      <Form onSubmit={sumbit}>
-        <Row className="mb-3">
-          <Col>
-            <Form.Group>
-              <Form.Label>Meta Title</Form.Label>
-              <Form.Control
-                placeholder="meta title"
-                name="metaTitle"
-                type="text"
-                value={blogForm.metaTitle}
-                onChange={handleblogForm}
-              />
-            </Form.Group>
-          </Col>
-          <Col>
-            <Form.Group>
-              <Form.Label>Meta Keyword</Form.Label>
-              <Form.Control
-                placeholder="meta keyword"
-                name="metaKeyword"
-                type="text"
-                value={blogForm.metaKeyword}
-                onChange={handleblogForm}
-              />
-            </Form.Group>
-          </Col>
-        </Row>
-        <Row className="mb-3">
-          <Col>
-            <Form.Group>
-              <Form.Label>Meta Description</Form.Label>
-              <Form.Control
-                placeholder="meta description"
-                name="metaDescription"
-                type="text"
-                value={blogForm.metaDescription}
-                onChange={handleblogForm}
-              />
-            </Form.Group>
-          </Col>
-          <Col>
-            <Form.Group>
-              <Form.Label>PageUrl</Form.Label>
-              <Form.Control
-                placeholder="pageUrl"
-                name="pageUrl"
-                type="text"
-                value={blogForm.pageUrl}
-                onChange={handleblogForm}
-              />
-            </Form.Group>
-          </Col>
-        </Row>
-        <Row className="mb-3">
-          <Col>
-            <Row>
-              <Col>
-                <Form.Label>Category</Form.Label>
-                <Form.Select
-                  name="category"
-                  id="category"
-                  value={blogForm.category}
-                  onChange={handleblogForm}
-                >
-                  <option>select menu</option>
-                  <option value="travel">travel</option>
-                  <option value="food">food</option>
-                </Form.Select>
-              </Col>
-              <Col>
-                <Form.Label>Status</Form.Label>
-                <Form.Select
-                  name="active"
-                  id="active"
-                  value={blogForm.active}
-                  onChange={handleblogForm}
-                >
-                  <option>select menu</option>
-                  <option value="true">Active</option>
-                  <option value="false">inActive</option>
-                </Form.Select>
-              </Col>
-            </Row>{' '}
-          </Col>
-          <Col>
-            <Form.Group>
-              <Form.Label>Image</Form.Label>
-              <Form.Control placeholder="Image" type="file" />
-            </Form.Group>
-          </Col>
-        </Row>
-        <Row className="mb-3">
-          <Col>
-            <Form.Group>
-              <Form.Label>Heading</Form.Label>
-              <Form.Control
-                placeholder="Heading"
-                name="heading"
-                type="text"
-                value={blogForm.heading}
-                onChange={handleblogForm}
-              />
-            </Form.Group>
-          </Col>
-          <Col>
-            <Form.Label>Description</Form.Label>
-            <Form.Control
-              as="textarea"
-              placeholder="Description"
-              name="smallDescription"
-              style={{ height: '50px' }}
-              value={blogForm.smallDescription}
-              onChange={handleblogForm}
-            />
-          </Col>
-        </Row>
-        <Row className="mb-3">
-          <Col>
-            <ReactQuill
-              value={blogForm.content}
-              onChange={(value) => setBlogFrom({ ...blogForm, content: value })}
-              formats={Editorformats}
-              modules={Editormodules}
-            />
-          </Col>
-        </Row>
-        <Row className="mb-3">
-          <Col>
-            <Form.Group>
-              <Form.Label>Author Name</Form.Label>
-              <Form.Control
-                placeholder="Author Name"
-                name="authorName"
-                type="text"
-                value={blogForm.authorName}
-                onChange={handleblogForm}
-              />
-            </Form.Group>
-          </Col>
-          <Col>
-            <FloatingLabel controlId="floatingTextarea2" label="About Author">
-              <Form.Control
-                as="textarea"
-                placeholder="About Author comment"
-                style={{ height: '100px' }}
-                value={blogForm.authorDescription}
-                onChange={handleblogForm}
-              />
-            </FloatingLabel>
-          </Col>
-        </Row>
-        {blogForm.faqs.map((faqitem, i) => (
-          <Row className="mb-3" key={i}>
-            <Col>
-              <Form.Group>
-                <Form.Label>FAQS Question</Form.Label>
-                <Form.Control
-                  placeholder="FAQS Question"
-                  name="faqs"
-                  type="text"
-                  value={faqitem.ques}
-                  onChange={(e) => handlefaqs(e.target.value, 'ques', i)}
-                />
-              </Form.Group>
-            </Col>
+    <Box component="form" onSubmit={sumbit} noValidate>
+      <Grid container spacing={2}>
+        <Grid size={{ xs: 12, md: 4, lg: 4 }}>
+          <TextField
+            label="Meta Title"
+            fullWidth
+            name="metaTitle"
+            value={blogForm.metaTitle}
+            onChange={handleblogForm}
+            placeholder="Meta Title"
+          />
+        </Grid>
+        <Grid size={{ xs: 12, md: 4, lg: 4 }}>
+          <TextField
+            label="Meta Keyword"
+            fullWidth
+            name="metaKeyword"
+            value={blogForm.metaKeyword}
+            onChange={handleblogForm}
+            placeholder="Meta Keyword"
+          />
+        </Grid>
 
-            <Col>
+        <Grid size={{ xs: 12, md: 4, lg: 4 }}>
+          <TextField
+            label="Meta Description"
+            fullWidth
+            name="metaDescription"
+            value={blogForm.metaDescription}
+            onChange={handleblogForm}
+            placeholder="Meta Description"
+          />
+        </Grid>
+        <Grid size={{ xs: 12, md: 4, lg: 4 }}>
+          <TextField
+            label="Page URL"
+            fullWidth
+            name="pageUrl"
+            value={blogForm.pageUrl}
+            onChange={handleblogForm}
+            placeholder="Page URL"
+          />
+        </Grid>
+        <Grid size={{ xs: 12, md: 4, lg: 4 }}>
+          <TextField
+            label="Heading"
+            fullWidth
+            name="heading"
+            value={blogForm.heading}
+            onChange={handleblogForm}
+            placeholder="Heading"
+          />
+        </Grid>
+        <Grid size={{ xs: 12, md: 4, lg: 2 }}>
+          <TextField
+            select
+            label="Category"
+            fullWidth
+            name="category"
+            value={blogForm.category}
+            onChange={handleblogForm}
+          >
+            <MenuItem value="">Select menu</MenuItem>
+            <MenuItem value="travel">Travel</MenuItem>
+            <MenuItem value="food">Food</MenuItem>
+          </TextField>
+        </Grid>
+
+        <Grid size={{ xs: 12, md: 4, lg: 2 }}>
+          <TextField
+            select
+            label="Status"
+            fullWidth
+            name="active"
+            value={blogForm.active}
+            onChange={handleblogForm}
+          >
+            <MenuItem value="">Select menu</MenuItem>
+            <MenuItem value="true">Active</MenuItem>
+            <MenuItem value="false">Inactive</MenuItem>
+          </TextField>
+        </Grid>
+
+        <Grid size={{ xs: 12, md: 4, lg: 1.5 }}>
+          <Button variant="outlined" component="label" fullWidth>
+            Upload Image
+            <input hidden type="file" name="image" />
+          </Button>
+        </Grid>
+        <Grid size={{ xs: 12, md: 4, lg: 2.5 }}>
+          <TextField
+            label="Author Name"
+            fullWidth
+            name="authorName"
+            value={blogForm.authorName}
+            onChange={handleblogForm}
+            placeholder="Author Name"
+          />
+        </Grid>
+
+        <Grid size={{ xs: 12, md: 4, lg: 4 }}>
+          <TextField
+            label="About Author"
+            fullWidth
+            multiline
+            minRows={1}
+            name="authorDescription"
+            value={blogForm.authorDescription}
+            onChange={handleblogForm}
+            placeholder="About Author"
+          />
+        </Grid>
+        <Grid size={{ xs: 12, md: 4, lg: 4 }}>
+          <TextField
+            label="Small Description"
+            fullWidth
+            name="smallDescription"
+            multiline
+            minRows={1}
+            value={blogForm.smallDescription}
+            onChange={handleblogForm}
+            placeholder="Description"
+          />
+        </Grid>
+
+        {blogForm.faqs.map((faqitem, i) => (
+          <React.Fragment key={i}>
+            <Grid size={{ xs: 12, md: 4, lg: 4 }}>
+              <TextField
+                label="FAQ Question"
+                fullWidth
+                value={faqitem.ques}
+                onChange={(e) => handlefaqs(e.target.value, 'ques', i)}
+                placeholder="FAQ Question"
+              />
+            </Grid>
+
+            <Grid size={{ xs: 12, md: 4, lg: 7 }}>
               <ReactQuill
                 value={faqitem.ans}
-                onChange={(e) => handlefaqs(e.target.value, 'ans', i)}
+                onChange={(e) => handlefaqs(e, 'ans', i)}
               />
-            </Col>
+            </Grid>
+
             {blogForm.faqs.length > 1 && (
-              <Col xs lg="1">
+              <Grid size={{ xs: 12, md: 4, lg: 1}}>
                 <Button
+                  variant="contained"
+                  color="error"
                   onClick={() => handledeleteFAQ(i)}
-                  className="bg-danger border-danger"
+                  sx={{ mt: 2 }}
                 >
                   Delete
                 </Button>
-              </Col>
+              </Grid>
             )}
-          </Row>
+          </React.Fragment>
         ))}
-        <Row className="float-end">
-          <Button onClick={handlemoreFAQ}>Add FAQ</Button>
-        </Row>
-        <Button type="sumbit">Sumbit</Button>
-      </Form>
-    </Container>
+
+        <Grid size={{ xs: 12, md: 4, lg: 1}}>
+          <Button
+            variant="contained"
+            onClick={handlemoreFAQ}
+            sx={{ mt: 2 }}
+          >
+            Add FAQ
+          </Button>
+        </Grid>
+        <Grid size={12}>
+          <Typography variant="subtitle1" gutterBottom>
+            Content
+          </Typography>
+          <ReactQuill
+            value={blogForm.content}
+            onChange={(value) =>
+              setBlogFrom({ ...blogForm, content: value })
+            }
+            formats={Editorformats}
+            modules={Editormodules}
+          />
+        </Grid>
+
+        <Grid item xs={12}>
+          <Button
+            type="submit"
+            variant="contained"
+            fullWidth
+            sx={{ mt: 3 }}
+          >
+            Submit
+          </Button>
+        </Grid>
+
+      </Grid>
+    </Box>
   );
 };
 
