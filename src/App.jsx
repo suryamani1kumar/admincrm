@@ -4,6 +4,7 @@ import SiderNav from './component/sidenav/SiderNav';
 import { useState, useEffect } from 'react';
 import { protectedRoutes, publicRoutes } from './utils/routes';
 import Cookies from 'js-cookie';
+import Header from './component/Header/Header';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
@@ -19,11 +20,23 @@ function App() {
   return (
     <BrowserRouter>
       {isAuthenticated && (
-        <SiderNav
-          setIsAuthenticated={setIsAuthenticated}
-          isSidebarActive={isSidebarActive}
-          setIsSidebarActive={setIsSidebarActive}
-        />
+        <>
+          <SiderNav
+            setIsAuthenticated={setIsAuthenticated}
+            isSidebarActive={isSidebarActive}
+            setIsSidebarActive={setIsSidebarActive}
+          />
+          <div style={{
+            width: isSidebarActive
+              ? 'calc(100% - 92px)'
+              : 'calc(100% - 250px)',
+            marginLeft: isSidebarActive ? '92px' : '250px',
+          }}>
+            <Header />
+          </div>
+
+        </>
+
       )}
 
       <Routes>

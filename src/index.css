@@ -82,7 +82,11 @@ body {
   list-style: none;
   margin-bottom: 5px;
 }
-
+.menu ul li:last-child {
+  position: relative;
+  list-style: none;
+  margin-bottom: 5px;
+}
 .menu ul li a,
 .menu ul li span {
   display: flex;
